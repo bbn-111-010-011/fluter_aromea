@@ -5,13 +5,17 @@ import 'UI/my_theme.dart';
 
 
 void main() {
-  runApp(MyTD2App());
+  runApp(const MyApp());
 }
 
-class MyTD2App extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final theme = MyTheme.dark();
-    return MaterialApp(theme: theme, title: 'TD2', home: Home());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),   // <-- retirer const
+    );
   }
 }
