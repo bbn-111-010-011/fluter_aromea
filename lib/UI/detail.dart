@@ -1,84 +1,131 @@
+// lib/UI/detail.dart
+
 import 'package:flutter/material.dart';
 
-import '../models/task.dart';
+import '../models/todo.dart';
 
+/// Page de détail pour un article Todo issu de l API Platzi.
 class Detail extends StatelessWidget {
-  final Task task;
+  final Todo todo;
 
-  const Detail({super.key, required this.task});
+  const Detail({super.key, required this.todo});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Task ${task.title} detail')),
-      body: Center(
+      appBar: AppBar(title: Text('Article ${todo.title}')),
+      body: SingleChildScrollView(
         child: Column(
           children: [
+            _ImageCard(todo: todo),
+
             Card(
-              color: task.color,
+              color: Colors.lightBlue,
               elevation: 7,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                leading: (const Icon(Icons.key)),
+                leading: const Icon(Icons.key),
                 title: const Text('Identifiant'),
-                subtitle: Text('${task.id}'),
+                subtitle: Text('${todo.id}'),
               ),
             ),
             Card(
-              color: task.color,
+              color: Colors.lightBlue,
               elevation: 7,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                leading: (const Icon(Icons.title)),
-                title: const Text('Titre de la tache'),
-                subtitle: Text(task.title),
+                leading: const Icon(Icons.title),
+                title: const Text('Titre de l article'),
+                subtitle: Text(todo.title),
               ),
             ),
             Card(
-              color: task.color,
+              color: Colors.lightBlue,
               elevation: 7,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                leading: (const Icon(Icons.description)),
-                title: const Text('Description de la tache '),
-                subtitle: Text(task.description),
+                leading: const Icon(Icons.description),
+                title: const Text('Description'),
+                subtitle: Text(todo.description),
               ),
             ),
-
             Card(
-              color: task.color,
+              color: Colors.lightBlue,
               elevation: 7,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                leading: (const Icon(Icons.attach_file)),
-                title: Text('Tags associés '),
-                subtitle: Text(task.tags.join(" ")),
+                leading: const Icon(Icons.category),
+                title: const Text('Catégorie'),
+                subtitle: Text(todo.categoryName),
               ),
             ),
-
             Card(
-              color: task.color,
+              color: Colors.lightBlue,
               elevation: 7,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                leading: (const Icon(Icons.trending_up)),
-                title: const Text('Difficulté '),
-                subtitle: Text('${task.difficulty}'),
-              ),
-            ),
-
-            Card(
-              color: task.color,
-              elevation: 7,
-              margin: const EdgeInsets.all(10),
-              child: ListTile(
-                leading: (const Icon(Icons.schedule)),
-                title: const Text("Nombre d'heures "),
-                subtitle: Text('${task.nbhours}'),
+                leading: const Icon(Icons.euro),
+                title: const Text('Prix'),
+                subtitle: Text('${todo.price} €'),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Carte en haut de la page pour afficher l image principale de l article.
+class _ImageCard extends StatelessWidget {
+  final Todo todo;
+
+  const _ImageCard({required this.todo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white,
+      elevation: 7,
+      margin: const EdgeInsets.all(10),
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: todo.imageUrl.isEmpty
+            ? Container(
+                color: Colors.grey.shade200,
+                child: const Center(
+                  child: Icon(
+                    Icons.image_not_supported,
+                    size: 48,
+                  ),
+                ),
+              )
+            : Image.network(
+                todo.imageUrl,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  final expected = loadingProgress.expectedTotalBytes;
+                  final loaded = loadingProgress.cumulativeBytesLoaded;
+                  final value = expected != null && expected != 0
+                      ? loaded / expected
+                      : null;
+                  return Center(
+                    child: CircularProgressIndicator(value: value),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey.shade200,
+                    child: const Center(
+                      child: Icon(
+                        Icons.broken_image,
+                        size: 48,
+                      ),
+                    ),
+                  );
+                },
+              ),
       ),
     );
   }

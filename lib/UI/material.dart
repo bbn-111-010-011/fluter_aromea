@@ -8,7 +8,7 @@ final textTheme = GoogleFonts.robotoTextTheme(baseDark.textTheme);
 
 
 return MaterialApp(
-title: 'TD2',
+title: 'Fonctionalité 1',
 theme: baseDark.copyWith(
 textTheme: textTheme,
 appBarTheme: AppBarTheme(
