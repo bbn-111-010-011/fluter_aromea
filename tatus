@@ -1,0 +1,23 @@
+[33mcommit db74feed820966c17b2c853592fc448035e7c710[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Aymen_BOUABBOUNE <pro.bouabboune@gmail.com>
+Date:   Mon Dec 1 08:51:05 2025 +0100
+
+    fonctionalité 1
+
+[33mcommit 218a155514e74090ee08c00cf75d4ee70a5e85db[m
+Author: Aymen_BOUABBOUNE <pro.bouabboune@gmail.com>
+Date:   Wed Nov 26 06:49:27 2025 +0100
+
+    ajout card 1 articles
+
+[33mcommit f86a0da734df3a42cd83d215d3048f8aa554d5ae[m
+Author: bouabboune <pro.bouabboune@gmail.com>
+Date:   Wed Nov 19 12:58:41 2025 -0600
+
+    ajout page d'acceuil
+
+[33mcommit e156002a6424f2813a3ead64a3e060fcf2d835db[m
+Author: bouabboune <pro.bouabboune@gmail.com>
+Date:   Mon Nov 17 12:49:18 2025 -0600
+
+    version initiale du projet
